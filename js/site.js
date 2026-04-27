@@ -104,6 +104,17 @@
         toggle.setAttribute('aria-expanded', String(open));
       });
     }
+
+    // Add scroll-state class to header (triggers stronger shadow when scrolled)
+    const headerEl = document.querySelector('.site-header');
+    if (headerEl) {
+      const onScroll = () => {
+        if (window.scrollY > 8) headerEl.classList.add('is-scrolled');
+        else headerEl.classList.remove('is-scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   }
 
   // ----------------------------------------------------------
