@@ -1,0 +1,65 @@
+name: Actualizar datos desde Google Sheets
+
+# Cuándo correr este workflow:
+on:
+  # Cada noche a las 3 AM Ciudad de México (= 09:00 UTC)
+  schedule:
+    - cron: "0 9 * * *"
+
+  # Disparable manualmente desde la pestaña "Actions" del repo
+  # (botón "Run workflow")
+  workflow_dispatch:
+
+# Permisos: el bot necesita poder hacer commit en el repo
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+
+      - name: Regenerar archivos JSON desde los Google Sheets
+        run: python scripts/build_data.py
+
+      - name: Detectar si hubo cambios
+        id: changes
+        run: |
+          if git diff --quiet -- data/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No hay cambios en los datos."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Detectados cambios en data/:"
+            git diff --stat -- data/
+          fi
+
+      - name: Commit y push de los datos actualizados
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "cardiomet-latam-bot"
+          git config user.email "actions@github.com"
+          git add data/
+          git commit -m "data: actualización automática desde Google Sheets [$(date -u +%Y-%m-%d)]"
+          git push
+
+      - name: Resumen
+        if: always()
+        run: |
+          if [ "${{ steps.changes.outputs.changed }}" = "true" ]; then
+            echo "✅ Datos actualizados y publicados."
+          else
+            echo "ℹ️  Build correcto, sin cambios respecto a la última versión."
+          fi
