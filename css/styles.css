@@ -29,9 +29,10 @@
   --ok:            #2d6a4f;
   --warn:          #bc6c25;
 
-  /* Typography — IBM Plex Serif (institutional, academic) + IBM Plex Sans (refined body) */
-  --font-display:  'IBM Plex Serif', 'Times New Roman', Georgia, serif;
-  --font-body:     'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  /* Typography — IBM Plex Serif (institutional, academic) + IBM Plex Sans (refined body)
+     'Twemoji Country Flags' is included so 🇲🇽 🇨🇱 🇧🇷 etc. render on Windows. */
+  --font-display:  'IBM Plex Serif', 'Twemoji Country Flags', 'Times New Roman', Georgia, serif;
+  --font-body:     'IBM Plex Sans', 'Twemoji Country Flags', system-ui, -apple-system, sans-serif;
   --font-mono:     'IBM Plex Mono', 'SF Mono', Consolas, monospace;
 
   /* Rhythm */
@@ -64,6 +65,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Twemoji Mozilla — renders flag emojis correctly on Windows
+   (Windows native fonts don't support regional indicator pairs) */
+@font-face {
+  font-family: 'Twemoji Country Flags';
+  unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067,
+                 U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+  src: url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');
+  font-display: swap;
+}
+
 img, svg { max-width: 100%; display: block; }
 
 a {
@@ -92,18 +103,22 @@ p { margin: 0 0 1em; }
 /* Header ------------------------------------------------------ */
 .site-header {
   border-bottom: 1px solid var(--rule);
-  background: var(--paper);
+  background: rgba(251, 250, 246, 0.96);
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: saturate(1.2) blur(8px);
-  -webkit-backdrop-filter: saturate(1.2) blur(8px);
-  background: rgba(251, 250, 246, 0.92);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  transition: box-shadow .25s ease, background .25s ease;
+}
+.site-header.is-scrolled {
+  box-shadow: 0 4px 24px -10px rgba(15, 27, 36, .18);
+  background: rgba(251, 250, 246, 0.99);
 }
 .site-header__inner {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 1rem var(--gutter);
+  padding: 1.15rem var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -118,7 +133,7 @@ p { margin: 0 0 1em; }
   text-decoration: none;
 }
 .brand__logo {
-  height: 48px;
+  height: 54px;
   width: auto;
   display: block;
   flex-shrink: 0;
@@ -132,43 +147,55 @@ p { margin: 0 0 1em; }
 .brand__text strong {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   color: var(--ink);
   letter-spacing: -0.005em;
 }
 .brand__text small {
   font-family: var(--font-body);
-  font-size: .68rem;
+  font-size: .7rem;
   font-weight: 500;
   color: var(--ink-muted);
   letter-spacing: .12em;
   text-transform: uppercase;
-  margin-top: 3px;
+  margin-top: 4px;
 }
 @media (max-width: 720px) {
-  .brand__logo { height: 38px; }
-  .brand__text strong { font-size: .92rem; }
-  .brand__text small { font-size: .58rem; }
+  .brand__logo { height: 40px; }
+  .brand__text strong { font-size: .95rem; }
+  .brand__text small { font-size: .6rem; }
 }
 
 .nav {
   display: flex;
-  gap: 1.75rem;
+  gap: 2rem;
   align-items: center;
 }
 .nav a {
-  font-size: .92rem;
+  font-size: .98rem;
+  font-weight: 500;
   color: var(--ink-soft);
   border: 0;
   position: relative;
-  padding: .25rem 0;
+  padding: .35rem 0;
+  letter-spacing: -0.005em;
+  transition: color .15s ease;
 }
-.nav a.is-active { color: var(--primary); font-weight: 500; }
+.nav a:hover { color: var(--brand); }
+.nav a.is-active {
+  color: var(--brand);
+  font-weight: 600;
+}
 .nav a.is-active::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
-  height: 2px; background: var(--primary);
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 3px;
+  background: var(--brand);
+  border-radius: 2px;
 }
-.nav a:hover { color: var(--primary); }
 
 .nav__toggle {
   display: none;
@@ -475,7 +502,7 @@ p { margin: 0 0 1em; }
 }
 
 select, input[type=text], input[type=search] {
-  font-family: inherit;
+  font-family: 'Twemoji Country Flags', 'IBM Plex Sans', system-ui, sans-serif;
   font-size: .88rem;
   padding: .45rem .75rem;
   border: 1px solid var(--rule);
@@ -520,6 +547,7 @@ select:hover, select:focus, input:focus {
   font-size: .9rem;
 }
 .article__country-flag {
+  font-family: 'Twemoji Country Flags', 'IBM Plex Sans', system-ui, sans-serif;
   font-size: 1.4rem;
   line-height: 1;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,.06));
@@ -654,6 +682,7 @@ select:hover, select:focus, input:focus {
   position: relative;
 }
 .country-tile__flag {
+  font-family: 'Twemoji Country Flags', 'IBM Plex Sans', system-ui, sans-serif;
   font-size: 2.4rem;
   line-height: 1;
   margin-bottom: .6rem;
@@ -917,4 +946,3 @@ select:hover, select:focus, input:focus {
   #country-detail .grid--4 { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.7rem; }
 }
-
