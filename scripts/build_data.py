@@ -41,7 +41,8 @@ SOCIO_CSV_URL = (
 )
 ARTS_CSV_URL = (
     "https://docs.google.com/spreadsheets/d/e/"
-    "2PACX-1vQiwSrQA2e8My9qF_dZUNHSJAZ-etIP4IK1pNcY9mAmv5joLe_84rKpDvS_DMWUgg/pub?output=csv"
+    "2PACX-1vQiwSrQA2e8My9qF_dZUNHSJAZ-etIP4IK1pNcY9mAmv5joLe_84rKpDvS_DMWUgg/"
+    "pub?gid=2133993041&single=true&output=csv"
 )
 
 ROOT = Path(__file__).resolve().parent.parent
