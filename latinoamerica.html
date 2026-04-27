@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Latinoamérica · CARDIOMET-LATAM</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="alternate icon" href="assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+<main>
+  <nav class="breadcrumb">
+    <a href="index.html">Inicio</a> · <span>Sección Latinoamérica</span>
+  </nav>
+
+  <section class="section">
+    <header style="margin-bottom: 3rem;">
+      <div class="section__label">Datos sociodemográficos</div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); margin: 0 0 1rem;">Sección Latinoamérica</h1>
+      <p style="font-size: 1.1rem; color: var(--ink-soft); max-width: 70ch; line-height: 1.6;">
+        Ocho tableros interactivos que comparan indicadores sociodemográficos y
+        carga de enfermedad cardiovascular entre los 25 países de la región.
+        Use los filtros incluidos en cada tablero para cambiar el indicador mostrado.
+      </p>
+    </header>
+
+    <!-- DASHBOARD 8 — Summary -->
+    <section class="dashboard" aria-labelledby="dash-8-title">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Resumen</span>
+          <h2 class="dashboard__title" id="dash-8-title">Instantánea regional</h2>
+          <p class="dashboard__subtitle">Principales indicadores agregados del conjunto de países con datos disponibles.</p>
+        </div>
+      </header>
+      <div class="dashboard__body" id="dash-8">
+        <div class="loading">Calculando…</div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD 1 — Population -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 01</span>
+          <h2 class="dashboard__title">Población total por país</h2>
+          <p class="dashboard__subtitle">Habitantes (en miles) de cada país latinoamericano. Barras ordenadas de mayor a menor.</p>
+        </div>
+      </header>
+      <div class="dashboard__body" id="dash-1">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Indicadores compilados a partir de PAHO Basic Indicators y World Bank Open Data.</footer>
+    </section>
+
+    <!-- DASHBOARD 2 — Sex distribution -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 02</span>
+          <h2 class="dashboard__title">Distribución urbana y rural</h2>
+          <p class="dashboard__subtitle">Proporción de población urbana y rural en cada país. Los países están ordenados de mayor a menor urbanización.</p>
+        </div>
+      </header>
+      <div class="dashboard__body" id="dash-2">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Indicadores compilados a partir de World Bank Open Data.</footer>
+    </section>
+
+    <!-- DASHBOARD 3 — GDP -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 03</span>
+          <h2 class="dashboard__title">PIB per cápita</h2>
+          <p class="dashboard__subtitle">Producto interno bruto per cápita en dólares estadounidenses a precios actuales.</p>
+        </div>
+      </header>
+      <div class="dashboard__body" id="dash-3">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Indicador compilado a partir de World Bank Open Data.</footer>
+    </section>
+
+    <!-- DASHBOARD 4 — Life expectancy -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 04</span>
+          <h2 class="dashboard__title">Esperanza de vida al nacer</h2>
+          <p class="dashboard__subtitle">Años de esperanza de vida al nacer por país. Barras ordenadas de mayor a menor.</p>
+        </div>
+      </header>
+      <div class="dashboard__body" id="dash-4">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Datos compilados a partir de PAHO Basic Indicators.</footer>
+    </section>
+
+    <!-- DASHBOARD 5 — Mortality rates (interactive) -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 05</span>
+          <h2 class="dashboard__title">Tasas vitales y demografía</h2>
+          <p class="dashboard__subtitle">Use el selector para cambiar entre tasa de mortalidad general, tasa de natalidad y edad media de cada país.</p>
+        </div>
+      </header>
+      <div class="dashboard__controls"></div>
+      <div class="dashboard__body" id="dash-5">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Indicadores compilados a partir de GBD Compare (IHME) y PAHO Basic Indicators.</footer>
+    </section>
+
+    <!-- DASHBOARD 6 — Scatter CV burden -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 06</span>
+          <h2 class="dashboard__title">Nacimientos y muertes anuales</h2>
+          <p class="dashboard__subtitle">Relación entre el número absoluto de muertes (eje X, log) y nacimientos (eje Y, log) por país. El color refleja el ratio nacimientos/muertes; valores más altos en verde indican poblaciones aún en crecimiento.</p>
+        </div>
+      </header>
+      <div class="dashboard__body" id="dash-6">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Indicadores compilados a partir de GBD Compare (IHME).</footer>
+    </section>
+
+    <!-- DASHBOARD 7 — Regional boxplot -->
+    <section class="dashboard">
+      <header class="dashboard__header">
+        <div>
+          <span class="dashboard__num">Tablero 07</span>
+          <h2 class="dashboard__title">Comparación por subregión</h2>
+          <p class="dashboard__subtitle">Distribución de los valores del indicador seleccionado, agrupados por subregión geográfica (Cono Sur, Andina, Brasil, Centroamérica, Caribe, México, Guayanas). Cada punto representa un país.</p>
+        </div>
+      </header>
+      <div class="dashboard__controls"></div>
+      <div class="dashboard__body" id="dash-7">
+        <div class="loading">Cargando tablero…</div>
+      </div>
+      <footer class="dashboard__footer">Fuente: base de datos CARDIOMET-LATAM · INCMNSZ. Subregiones definidas por criterio geográfico del comité.</footer>
+    </section>
+  </section>
+</main>
+
+<script src="js/site.js"></script>
+<script src="js/dashboards.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comité Ejecutivo · CARDIOMET-LATAM</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="alternate icon" href="assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0 3rem;
+    }
+    .member {
+      background: var(--paper-raised);
+      border: 1px solid var(--rule);
+      padding: 1.5rem 1.5rem 1.25rem;
+      border-radius: 2px;
+      border-left: 3px solid var(--brand);
+    }
+    .member__name {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: var(--ink);
+      line-height: 1.25;
+      margin: 0 0 .5rem;
+    }
+    .member__role {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .group-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      margin: 3.5rem 0 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .group-title:first-of-type { margin-top: 1rem; }
+    .acknowledgments {
+      background: var(--paper-sunk);
+      padding: 1.75rem 2rem;
+      border-radius: 2px;
+      margin-top: 3rem;
+    }
+    .acknowledgments h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    .acknowledgments ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .5rem;
+    }
+    .acknowledgments li {
+      padding: .35rem 0;
+      color: var(--ink-soft);
+      font-size: .95rem;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <nav class="breadcrumb">
+    <a href="index.html">Inicio</a> · <a href="index.html">Acerca de nosotros</a> · <span>Comité Ejecutivo</span>
+  </nav>
+
+  <section class="section section--narrow">
+    <div class="section__label">Quiénes integramos la plataforma</div>
+    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin: 0 0 .5rem;">Comité Ejecutivo</h1>
+    <p style="color: var(--ink-muted); font-size: 1.05rem; margin-bottom: 3rem;">Comité actual al cargo del proyecto.</p>
+
+    <h2 class="group-title">Responsables del Proyecto</h2>
+    <div class="committee-grid">
+      <article class="member">
+        <p class="member__name">Dr. Carlos A. Aguilar Salinas</p>
+        <p class="member__role">Unidad de Investigación en Enfermedades Metabólicas · Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán (México)</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dr. Antonio Vidal-Puig</p>
+        <p class="member__role">Investigador principal en mecanismos moleculares de balance energético · Instituto de Ciencias Metabólicas (IMS), Addenbrooke's, Universidad de Cambridge</p>
+      </article>
+    </div>
+
+    <h2 class="group-title">Comité Ejecutivo</h2>
+    <div class="committee-grid">
+      <article class="member">
+        <p class="member__name">Dr. Carlos O. Mendivil</p>
+        <p class="member__role">Fundación Santa Fe de Bogotá — Departamento de Medicina Interna, Sección de Endocrinología</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dr. Pablo Corral</p>
+        <p class="member__role">Universidad FASTA — Facultad de Medicina, Departamento de Investigación</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dra. María Alejandra Ramos</p>
+        <p class="member__role">Jefa de Servicio de Endocrinología — Hospital Escuela Tegucigalpa, Honduras</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dr. Andrei C. Sposito</p>
+        <p class="member__role">Departamento de Cardiología — Facultad de Ciencias Médicas, Universidade Estadual de Campinas</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dr. Rodrigo M. Carrillo Larco</p>
+        <p class="member__role">Departamento de Cardiología — Universidad Emory</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dr. Yulino Castillo Núñez</p>
+        <p class="member__role">Médico internista y endocrinólogo · Jefe del Departamento de Endocrinología, Hospital Dr. Salvador B. Gautier (República Dominicana)</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dr. Rodrigo Alonso Karlezi</p>
+        <p class="member__role">Dislipidemias genéticas, hipercolesterolemia familiar y riesgo cardiovascular · Centro Avanzado de Medicina Metabólica y Nutrición, Santiago de Chile</p>
+      </article>
+    </div>
+
+    <h2 class="group-title">Comité Operativo</h2>
+    <div class="committee-grid">
+      <article class="member">
+        <p class="member__name">Dr. Alexandro J. Martagón Rosado</p>
+        <p class="member__role">Escuela de Medicina y Ciencias de la Salud, Tecnológico de Monterrey · Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán (México)</p>
+      </article>
+      <article class="member">
+        <p class="member__name">LN. Natalia Soto Larios</p>
+        <p class="member__role">Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán (México)</p>
+      </article>
+      <article class="member">
+        <p class="member__name">LN. Valeria Rebollar Fernández</p>
+        <p class="member__role">Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán (México)</p>
+      </article>
+      <article class="member">
+        <p class="member__name">Dra. Elizabeth Irina Figueroa Juárez</p>
+        <p class="member__role">Investigadora Postdoctoral · Novo Nordisk &amp; Universidad de Oxford, Inglaterra</p>
+      </article>
+    </div>
+
+    <div class="acknowledgments">
+      <h3>Agradecemos la colaboración de</h3>
+      <ul>
+        <li>Dr. Rafael Zubirán</li>
+        <li>Dr. Rogelio González Arellanes</li>
+        <li>LNC. Samantha Praget Bracamontes</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<script src="js/site.js"></script>
+</body>
+</html>

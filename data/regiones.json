@@ -1,0 +1,41 @@
+{
+  "Cono Sur": [
+    "Argentina",
+    "Chile",
+    "Paraguay",
+    "Uruguay"
+  ],
+  "Andina": [
+    "Bolivia",
+    "Colombia",
+    "Ecuador",
+    "Perú",
+    "Venezuela"
+  ],
+  "Brasil": [
+    "Brasil"
+  ],
+  "Centroamérica": [
+    "Belice",
+    "Costa Rica",
+    "El Salvador",
+    "Guatemala",
+    "Honduras",
+    "Nicaragua",
+    "Panamá"
+  ],
+  "Caribe": [
+    "Cuba",
+    "Jamaica",
+    "Puerto Rico",
+    "Republica Dominicana"
+  ],
+  "México": [
+    "México"
+  ],
+  "Guayanas": [
+    "Guyana",
+    "Guayana Francesa",
+    "Suriname"
+  ]
+}

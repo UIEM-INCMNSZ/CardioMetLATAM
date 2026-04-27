@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artículos · CARDIOMET-LATAM</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="alternate icon" href="assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<main>
+  <nav class="breadcrumb">
+    <a href="index.html">Inicio</a> · <span>Artículos</span>
+  </nav>
+
+  <section class="section">
+    <header style="margin-bottom: 2.5rem;">
+      <div class="section__label">Evidencia científica</div>
+      <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); margin: 0 0 1rem;">Base de artículos</h1>
+      <p style="font-size: 1.1rem; color: var(--ink-soft); max-width: 70ch; line-height: 1.6;">
+        Más de 800 artículos curados sobre epidemiología cardiometabólica en
+        Latinoamérica. Filtre por país, diseño de estudio, desenlace clínico o
+        busque por título, autor o palabra clave.
+      </p>
+    </header>
+
+    <div class="filters">
+      <label>
+        País
+        <select id="f-country"></select>
+      </label>
+      <label>
+        Diseño de estudio
+        <select id="f-design"></select>
+      </label>
+      <label>
+        Desenlace
+        <select id="f-outcome"></select>
+      </label>
+      <label>
+        Búsqueda libre
+        <input type="search" id="f-search" placeholder="Título, autor, palabra clave…" style="min-width: 240px;">
+      </label>
+      <label style="flex-direction: row; align-items: center; gap: .5rem; text-transform: none; letter-spacing: 0; font-size: .88rem; color: var(--ink-soft); font-weight: 500;">
+        <input type="checkbox" id="f-open" style="margin: 0;">
+        Solo acceso abierto
+      </label>
+      <button type="button" id="f-reset" class="btn btn--ghost" style="padding: .5rem 1rem; font-size: .85rem;">Limpiar</button>
+      <span class="filters__count" id="article-count"></span>
+    </div>
+
+    <ul class="article-list" id="article-list">
+      <li class="loading">Cargando artículos…</li>
+    </ul>
+
+    <div id="load-more-wrap" style="text-align: center; margin-top: 2rem;"></div>
+  </section>
+</main>
+
+<script src="js/site.js"></script>
+<script src="js/articulos.js"></script>
+</body>
+</html>
