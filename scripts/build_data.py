@@ -268,46 +268,78 @@ def parse_keywords(kw: Any) -> list[str]:
     return [p.strip().rstrip(".").strip() for p in parts if p.strip() and len(p.strip()) > 1]
 
 
+def normalize_col(name: str) -> str:
+    """Strip accents, lowercase, collapse whitespace.
+
+    Lets us match 'TÍTULO', 'Titulo', 'titulo ', 'TITLE' etc. flexibly.
+    """
+    import unicodedata
+    s = str(name).strip().lower()
+    s = "".join(
+        c for c in unicodedata.normalize("NFKD", s)
+        if not unicodedata.combining(c)
+    )
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+
 def build_articulos(df: pd.DataFrame) -> tuple[list, list]:
     """Convert articles dataframe into (full_list, compact_list)."""
     log("Procesando artículos…")
 
     df = df.rename(columns=lambda c: str(c).strip())
 
-    # Build a lowercase->actual column map for flexible matching
-    cmap = {c.lower().strip(): c for c in df.columns}
+    # Normalized -> actual column map
+    cmap = {normalize_col(c): c for c in df.columns}
 
-    def get(row, *names):
-        for n in names:
-            if n.lower() in cmap:
-                return row.get(cmap[n.lower()])
+    def get_col(*possible_names):
+        """Return the actual DataFrame column matching any of the names."""
+        for n in possible_names:
+            key = normalize_col(n)
+            if key in cmap:
+                return cmap[key]
         return None
 
+    def cell(row, *possible_names):
+        col = get_col(*possible_names)
+        return row.get(col) if col is not None else None
+
+    # Resolve essential columns up front
+    col_pais = get_col("PAÍS", "PAIS", "País", "Pais", "country")
+    col_titulo = get_col("TÍTULO", "TITULO", "Título", "Titulo", "title")
+    col_excluido = get_col("EXCLUÍDO", "EXCLUIDO", "Excluido", "Excluído")
+
+    if col_pais is None or col_titulo is None:
+        # Show what we DO have to make debugging easier
+        raise RuntimeError(
+            f"No se encontraron las columnas esenciales en Artículos. "
+            f"Falta país: {col_pais is None}, falta título: {col_titulo is None}. "
+            f"Columnas disponibles: {list(df.columns)}"
+        )
+
     # Filter: not excluded
-    if "excluído" in cmap or "excluido" in cmap:
-        col = cmap.get("excluído") or cmap.get("excluido")
-        df = df[df[col] == 0]
-    df = df.dropna(subset=[cmap.get("país", cmap.get("pais", "PAÍS")),
-                            cmap.get("título", cmap.get("titulo", "TÍTULO"))]).reset_index(drop=True)
+    if col_excluido is not None:
+        df = df[df[col_excluido].fillna(0).astype(str).str.strip().isin(["0", "0.0", "FALSE", "False", "false"])]
+    df = df.dropna(subset=[col_pais, col_titulo]).reset_index(drop=True)
 
     articles = []
     for idx, row in df.iterrows():
+        libre_raw = str(cell(row, "LIBRE ACCESO", "LIBRE ACCESO ", "Libre acceso") or "NO").strip().upper()
         rec = {
             "id": int(idx) + 1,
-            "libre_acceso": (str(get(row, "libre acceso", "LIBRE ACCESO ", "LIBRE ACCESO") or "NO")
-                             .strip().upper() == "SI"),
-            "pais": normalize_country(get(row, "país", "pais", "PAÍS")),
-            "titulo": clean_text(get(row, "título", "titulo", "TÍTULO")),
-            "autores": clean_text(get(row, "autores", "AUTORES")),
-            "cita": clean_text(get(row, "cita", "CITA")),
-            "doi": clean_text(get(row, "doi", "DOI")),
-            "url": clean_text(get(row, "url", "URL")),
-            "resumen": clean_text(get(row, "resumen", "RESUMEN")),
-            "palabras_clave": parse_keywords(get(row, "palabras clave", "PALABRAS CLAVE")),
-            "disenio": normalize_design(get(row, "diseño de estudio", "DISEÑO DE ESTUDIO")),
-            "desenlace": normalize_outcome(get(row, "desenlace", "DESENLACE")),
-            "factor_riesgo": clean_text(get(row, "factor de riesgo", "FACTOR DE RIESGO")),
-            "factor_protector": clean_text(get(row, "factor protector", "FACTOR PROTECTOR ", "FACTOR PROTECTOR")),
+            "libre_acceso": libre_raw == "SI",
+            "pais": normalize_country(cell(row, "PAÍS", "PAIS", "País", "Pais")),
+            "titulo": clean_text(cell(row, "TÍTULO", "TITULO", "Título", "Titulo")),
+            "autores": clean_text(cell(row, "AUTORES", "Autores")),
+            "cita": clean_text(cell(row, "CITA", "Cita")),
+            "doi": clean_text(cell(row, "DOI", "doi")),
+            "url": clean_text(cell(row, "URL", "url")),
+            "resumen": clean_text(cell(row, "RESUMEN", "Resumen")),
+            "palabras_clave": parse_keywords(cell(row, "PALABRAS CLAVE", "Palabras clave")),
+            "disenio": normalize_design(cell(row, "DISEÑO DE ESTUDIO", "Diseño de estudio", "DISENO DE ESTUDIO")),
+            "desenlace": normalize_outcome(cell(row, "DESENLACE", "Desenlace")),
+            "factor_riesgo": clean_text(cell(row, "FACTOR DE RIESGO", "Factor de riesgo")),
+            "factor_protector": clean_text(cell(row, "FACTOR PROTECTOR", "FACTOR PROTECTOR ", "Factor protector")),
         }
         articles.append(rec)
 
