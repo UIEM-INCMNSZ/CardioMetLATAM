@@ -45,88 +45,6 @@
     "TASA DE MORTALIDAD CARDIOVASCULAR (POR 100,000 HABITANTES)",
     "TASA DE NATALIDAD (POR CADA 1000 HABITANTES)"
   ],
-  "catalogo": [
-    {
-      "id": 1,
-      "variable": "FUENTE GUBERNAMENTAL"
-    },
-    {
-      "id": 2,
-      "variable": "POBLACION TOTAL (MILES)"
-    },
-    {
-      "id": 3,
-      "variable": "MUJERES (%)"
-    },
-    {
-      "id": 4,
-      "variable": "HOMBRES (%)"
-    },
-    {
-      "id": 5,
-      "variable": "EDAD MEDIA"
-    },
-    {
-      "id": 6,
-      "variable": "DENSIDAD DE POBLACIÓN (HAB/KM2)"
-    },
-    {
-      "id": 7,
-      "variable": "SALARIO MINIMO MENSUAL (DÓRALES)"
-    },
-    {
-      "id": 8,
-      "variable": "PIB PER CÁPITA (US$ A PRECIOS ACTUALES)"
-    },
-    {
-      "id": 9,
-      "variable": "TASA DE NATALIDAD (POR CADA 1000 HABITANTES)"
-    },
-    {
-      "id": 10,
-      "variable": "NACIMIENTOS REGISTRADOS (MILES)"
-    },
-    {
-      "id": 11,
-      "variable": "ESPERANZA DE VIDA AL NACER (AÑOS)"
-    },
-    {
-      "id": 12,
-      "variable": "TASA DE MORTALIDAD (POR CADA 1000 HABITANTES)"
-    },
-    {
-      "id": 13,
-      "variable": "MUERTES TOTALES (MILES)"
-    },
-    {
-      "id": 14,
-      "variable": "PRINCIPAL CAUSA DE MUERTE"
-    },
-    {
-      "id": 15,
-      "variable": "TASA DE MORTALIDAD CV (POR 100,000 HABITANTES)"
-    },
-    {
-      "id": 16,
-      "variable": "MUERTES TOTALES POR ECV"
-    },
-    {
-      "id": 17,
-      "variable": "YLDS POR ECV"
-    },
-    {
-      "id": 18,
-      "variable": "DALYS /AVAD POR ECV"
-    },
-    {
-      "id": 19,
-      "variable": "POBLACIÓN RURAL (%)"
-    },
-    {
-      "id": 20,
-      "variable": "POBLACIÓN URBANA (%)"
-    }
-  ],
   "datos": {
     "Brasil": {
       "FUENTE GUBERNAMENTAL": {
@@ -6130,5 +6048,6 @@
       "anio": null,
       "fuente": null
     }
-  ]
+  ],
+  "_generado": "2026-04-27T21:37:22.027228Z"
 }
