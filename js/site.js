@@ -80,7 +80,16 @@
           <span>© ${new Date().getFullYear()} CARDIOMET-LATAM · INCMNSZ</span>
           <span>Todos los derechos reservados.</span>
         </div>
-      </footer>
+  <div class="funding-notice" style="
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft, #666);
+  border-top: 1px solid var(--border, #e0e0e0);
+  margin-top: 1rem;
+">
+  Sitio financiado por la Sociedad Europea de Aterosclerosis
+</div>
     `;
   }
 
